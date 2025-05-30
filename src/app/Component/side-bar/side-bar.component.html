@@ -1,0 +1,11 @@
+<!-- sidebar.component.html -->
+<nav class="sidebar" [class.closed]="!isOpen">
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    <span *ngIf="isOpen">&#9776;</span>
+    <span *ngIf="!isOpen">&#9654;</span>
+  </button>
+  <ul>
+    <li><button routerLink="/home">Home</button></li>
+    <li><button (click)="onLogOut()">Logout</button></li>
+  </ul>
+</nav>
