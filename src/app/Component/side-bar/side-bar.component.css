@@ -1,0 +1,153 @@
+.sidebar {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  width: 250px;
+  min-width: 250px;
+  height: 100vh;
+  padding: 1.2rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar.closed {
+  width: 80px;
+  min-width: 80px;
+  padding: 1rem 0.5rem;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 900;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #ffffff22;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info {
+  flex-grow: 1;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.user-info h4 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.user-info span {
+  font-size: 0.85rem;
+  color: #e0e0e0;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-links li:hover,
+.nav-links li.active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.icon {
+  font-size: 1.25rem;
+  width: 28px;
+  text-align: center;
+}
+
+.link-text {
+  margin-left: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.logout-section {
+  margin-top: auto;
+  text-align: center;
+}
+
+.logout-btn {
+  background: #ef4444;
+  border: none;
+  padding: 10px 16px;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -100%;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar.closed {
+    left: -100%;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+}

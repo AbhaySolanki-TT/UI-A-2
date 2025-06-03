@@ -1,16 +1,31 @@
-<div class="dashboard-wrapper">
+<!-- <div class="dashboard-wrapper">
   <app-side-bar></app-side-bar>
 
   <div class="main-content">
     <div class="top-navbar">
       <h3>Dashboard</h3>
-      <!-- <button (click)="logout()" class="logout-btn">Logout</button> -->
-      <button class="logout-btn">Logout</button>
+      <button (click)="logout()" class="logout-btn">Logout</button>
     </div>
 
     <div class="dashboard-content">
       <h1>Welcome to the Game Zone Booking App</h1>
       <p>This is your dashboard where you can view bookings, revenue, and more.</p>
+    </div>
+  </div>
+</div> -->
+
+<div class="dashboard-wrapper">
+  <app-side-bar></app-side-bar>
+
+  <div class="main-content">
+    <div class="top-navbar">
+      <h3>{{ title }}</h3>
+      <button (click)="logout()" class="logout-btn">🚪 Logout</button>
+    </div>
+
+    <div class="dashboard-content">
+      <h1>🎮 Game Zone Booking App</h1>
+      <p>{{ description }}</p>
     </div>
   </div>
 </div>

@@ -1,28 +1,42 @@
 <div class="login-container">
   <div class="login-card">
-    <h2>Login</h2>
+
+    <a routerLink='/register' class="register-btn btn">Sign Up</a>
+
+    <div class="login-header">
+      <div class="game-icon">🎮</div>
+      <h2>Game Zone Login</h2>
+      <p class="login-subtitle">Access your gaming dashboard</p>
+    </div>
+
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" formControlName="email" placeholder="Enter your email" />
-        <div *ngIf="submitted && f['email'].errors">
-          <small *ngIf="f['email'].errors['required']">Email is required.</small>
-          <small *ngIf="f['email'].errors['email']">Email is invalid.</small>
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <input type="email" id="email" formControlName="email" placeholder="Enter your email address" />
+        </div>
+        <div class="error-messages" *ngIf="submitted && f['email'].errors">
+          <small *ngIf="f['email'].errors['required']">Email is required</small>
+          <small *ngIf="f['email'].errors['email']">Please enter a valid email address</small>
         </div>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" formControlName="password" placeholder="Enter your password" />
-        <div *ngIf="submitted && f['password'].errors">
-          <small *ngIf="f['password'].errors['required']">Password is required.</small>
+        <div class="input-wrapper">
+          <input type="password" id="password" formControlName="password" placeholder="Enter your password" />
+        </div>
+        <div class="error-messages" *ngIf="submitted && f['password'].errors">
+          <small *ngIf="f['password'].errors['required']">Password is required</small>
           <small *ngIf="f['password'].errors['minlength']">
-            Password must be at least 6 characters.
+            Password must be at least 6 characters long
           </small>
         </div>
       </div>
 
-      <button class="login-btn" type="submit">Login</button>
+      <button class="login-btn" type="submit" [disabled]="loginForm.invalid && submitted">
+        Login to Game Zone
+      </button>
     </form>
   </div>
 </div>

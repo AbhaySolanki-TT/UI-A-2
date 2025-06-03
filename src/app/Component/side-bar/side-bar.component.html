@@ -1,11 +1,26 @@
-<!-- sidebar.component.html -->
-<nav class="sidebar" [class.closed]="!isOpen">
+<!-- <nav class="sidebar" [class.closed]="!isOpen">
   <button class="toggle-btn" (click)="toggleSidebar()">
     <span *ngIf="isOpen">&#9776;</span>
     <span *ngIf="!isOpen">&#9654;</span>
   </button>
   <ul>
-    <li><button routerLink="/home">Home</button></li>
+    <li><button routerLink="/">Home</button></li>
     <li><button (click)="onLogOut()">Logout</button></li>
   </ul>
+</nav> -->
+
+<!-- <div [class]="overlayClasses" (click)="onOverlayClick()"></div> -->
+
+
+<nav [class]="sidebarClasses">
+  <div class="sidebar-header">
+    <div class="user-info" *ngIf="isOpen">
+      <h4>{{ userInfo.name }}</h4>
+      <span>{{ userInfo.roleName }}</span>
+    </div>
+  </div>
+
+  <div class="logout-section" *ngIf="isOpen">
+    <button (click)="onLogOut()" class="logout-btn">🚪 Logout</button>
+  </div>
 </nav>
