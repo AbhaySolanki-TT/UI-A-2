@@ -1,5 +1,12 @@
 <div class="user-container">
-    <h2 class="title">User List</h2>
+
+    <div class="component-header">
+        <h2 class="title">User List</h2>
+
+        <button mat-fab (click)="EditDialog(null)">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
 
     <table class="user-table" *ngIf="users.length > 0;">
         <thead>
@@ -23,9 +30,12 @@
                 <td>{{ user.mobileNo }}</td>
                 <td>{{ user.roleName }}</td>
                 <td>{{ user.joiningDate | date: 'mediumDate' }}</td>
-                <td>
+                <td class="actions">
                     <button mat-fab (click)="EditDialog(user)">
                         <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-fab (click)="DeleteDialog(user.id, user.firstName + ' ' + user.lastName)">
+                        <mat-icon>delete</mat-icon>
                     </button>
                 </td>
             </tr>

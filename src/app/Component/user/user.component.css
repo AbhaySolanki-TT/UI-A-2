@@ -52,6 +52,15 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
+.actions {
+  display: flex;
+}
+
+.component-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 768px) {
   .user-table, .user-table thead, .user-table tbody, .user-table th, .user-table td, .user-table tr {
     display: block;

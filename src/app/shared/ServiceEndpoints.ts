@@ -7,7 +7,20 @@ export const API_ENDPOINTS = {
     },
     USER: {
         GETALL: 'admin/users/GetAll',
-        GET_BY_ID: (id: string | number) => `auth/Get/${id}`,
+        USERCOUNT: 'admin/users/usercount',
+        GET_BY_ID: (id: string | number) => `admin/users/Get/${id}`,
 
+        UPDATE: 'admin/users/Update',
+        CREATE: 'admin/users/Create',
+        DELETE: (id: string | number) => `admin/users/Delete/${id}`,
+    },
+    ROLE: {
+        GETALL: 'Role/GetAll',
+        USERCOUNT: 'Role/usercount',
+        GET_BY_ID: (id: string | number) => `Role/Get/${id}`,
+
+        CREATE: 'Role/Create',
+        UPDATE: 'Role/Update',
+        DELETE: (id: string | number) => `Role/Delete/${id}`,
     }
 };

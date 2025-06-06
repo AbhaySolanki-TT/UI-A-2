@@ -1,40 +1,5 @@
-<!-- <h2 mat-dialog-title>Confirm Logout</h2>
-<mat-dialog-content>Are you sure you want to log out?</mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-button (click)="dialogRef.close(false)">Cancel</button>
-    <button mat-button color="warn" (click)="dialogRef.close(true)">Logout</button>
-</mat-dialog-actions> -->
-
-<!-- <div class="logout-dialog">
-  <div class="dialog-header">
-    <div class="logout-icon">🚪</div>
-    <h2 mat-dialog-title class="dialog-title">Confirm Logout</h2>
-  </div>
-  
-  <mat-dialog-content class="dialog-content">
-    <p class="logout-message">Are you sure you want to log out?</p>
-    <p class="logout-submessage">You'll need to sign in again to access your account.</p>
-  </mat-dialog-content>
-  
-  <mat-dialog-actions class="dialog-actions" align="end">
-    <button 
-      mat-button 
-      class="cancel-btn"
-      (click)="dialogRef.close(false)">
-      Cancel
-    </button>
-    <button 
-      mat-button 
-      class="logout-btn"
-      color="warn" 
-      (click)="dialogRef.close(true)">
-      <span class="btn-icon">🚪</span>
-      Logout
-    </button>
-  </mat-dialog-actions>
-</div> -->
-
 <div class="logout-dialog">
+
   <div class="dialog-header">
     <div class="logout-icon">🚪</div>
     <h2 mat-dialog-title class="dialog-title">Confirm Logout</h2>
@@ -46,19 +11,16 @@
   </mat-dialog-content>
 
   <mat-dialog-actions class="dialog-actions" align="end">
-    <button 
-      mat-button 
-      class="cancel-btn"
-      (click)="onCancel()">
+
+    <button mat-button class="cancel-btn" (click)="onCancel()">
       Cancel
     </button>
-    <button 
-      mat-button 
-      class="logout-btn"
-      color="warn"
-      (click)="onLogout()">
+
+    <button mat-button class="logout-btn" color="warn" (click)="onLogout()">
       <span class="btn-icon">🚪</span>
       Logout
     </button>
+
   </mat-dialog-actions>
+
 </div>

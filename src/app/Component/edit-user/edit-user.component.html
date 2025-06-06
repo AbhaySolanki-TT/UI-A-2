@@ -1,1 +1,60 @@
-<p>edit-user works!</p>
+<h2 mat-dialog-title>{{ data ? 'Edit User' : 'Add User' }}</h2>
+
+<form [formGroup]="userForm" class="edit-form">
+    <div class="form-container">
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" [readonly]="!!data">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" *ngIf="!data">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" [disabled]="!!data">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth" [readonly]="!!data">
+            <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dobPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Mobile No.</mat-label>
+            <input matInput formControlName="mobileNo">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Role</mat-label>
+            <input matInput formControlName="roleName">
+        </mat-form-field>
+        
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="roleId" (selectionChange)="onRoleChange($event)">
+                <mat-option *ngFor="let role of roles" [value]="role.id">
+                    {{ role.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="fill">
+            <mat-label>Joining Date</mat-label>
+            <input matInput type="date" formControlName="joiningDate" readonly>
+        </mat-form-field>
+    </div>
+    <div class="button-group">
+        <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-flat-button color="primary" (click)="save()">Save</button>
+    </div>
+</form>
