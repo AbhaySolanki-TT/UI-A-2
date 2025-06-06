@@ -9,15 +9,15 @@
         constructor(private http: HttpClient) {}
 
         get<T>(url: string) {
-            return this.http.get<T>(`${environment.apiUrl}/${url}`);
+            return this.http.get<T>(`${url}`);
         }
         post<T>(url: string, body:any){
-            return this.http.post<T>(`${environment.apiUrl}/${url}`, body);
+            return this.http.post<T>(`${url}`, body);
         }
         put<T>(url: string, body:any){
-            return this.http.put<T>(`${environment.apiUrl}/${url}`, body);
+            return this.http.put<T>(`${url}`, body);
         }
         delete<T>(url: string){
-            return this.http.delete<T>(`${environment.apiUrl}/${url}`);
+            return this.http.delete<T>(`${url}`);
         }
     }

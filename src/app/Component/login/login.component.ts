@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/Services/auth.service';
 import { Router, RouterLink } from '@angular/router';
-import { AppRoutes } from '../../shared/routes-enum';
+import { AppRoutes } from '../../shared/NavigationRoutes';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -44,15 +45,12 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // console.log('Form submitted successfully:', this.loginForm.value);
-
     this.service.login(this.loginForm.value).subscribe({
       next: (res) => {
         if (res.isSuccess) {
-          // console.log('Login success:', res.data);
           let data = res.data;
 
-          localStorage.setItem('token', res.data.token ?? '');
+          localStorage.setItem(environment.identity_type, res.data.token ?? '');
 
           this.router.navigate([AppRoutes.home]);
         } else {

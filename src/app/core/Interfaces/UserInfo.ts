@@ -1,6 +1,7 @@
 export interface UserInfo {
     id: number,
-    name: string,
+    firstName: string,
+    lastName: string,
     email: string,
     dateOfBirth: Date,
     mobileNo: string,

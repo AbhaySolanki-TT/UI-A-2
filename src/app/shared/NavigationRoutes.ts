@@ -2,5 +2,7 @@ export const AppRoutes = {
   home: '',
   login: 'login',
   logout: 'logout',
-  register: 'register'
+  register: 'register',
+  users: 'users',
+  dashboard: 'dashboard',
 };

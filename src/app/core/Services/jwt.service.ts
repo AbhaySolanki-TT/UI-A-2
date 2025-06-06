@@ -5,6 +5,13 @@ import { isPlatformBrowser } from "@angular/common";
 
 const USER_KEY = 'user';
 
+const CLAIMS = {
+  NAME: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+  EMAIL: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+  ROLE: "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+};
+
+
 @Injectable({providedIn: 'root'})
 export class JwtService {
     private jwtHelper = new JwtHelperService();
@@ -12,12 +19,7 @@ export class JwtService {
     constructor(@Inject(PLATFORM_ID) private platformId: Object){}
 
     getToken(): string | null {
-        // if(isPlatformBrowser(this.platformId))
-        // {
-        //     return localStorage.getItem('token');//environment.identity_type)
-        // }
-        // return null;
-        return localStorage.getItem('token');//environment.identity_type)
+        return localStorage.getItem('token');
     }
 
     decodeToken(): any {
@@ -28,17 +30,17 @@ export class JwtService {
 
     getUserName(): string | null {
         const decoded = this.decodeToken();
-        return decoded?.nameid || null;
+        return decoded?.[CLAIMS.NAME] || null;
     }
 
     getEmail(): string | null {
         const decoded = this.decodeToken();
-        return decoded?.email || null;
+        return decoded?.[CLAIMS.EMAIL] || null;
     }
 
     getRole(): string | null {
         const decoded = this.decodeToken();
-        return decoded?.role || null;
+        return decoded?.[CLAIMS.ROLE] || null;
     }
 
     isTokenExpired(): boolean {

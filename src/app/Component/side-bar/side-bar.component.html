@@ -1,23 +1,28 @@
-<!-- <nav class="sidebar" [class.closed]="!isOpen">
-  <button class="toggle-btn" (click)="toggleSidebar()">
-    <span *ngIf="isOpen">&#9776;</span>
-    <span *ngIf="!isOpen">&#9654;</span>
-  </button>
-  <ul>
-    <li><button routerLink="/">Home</button></li>
-    <li><button (click)="onLogOut()">Logout</button></li>
-  </ul>
-</nav> -->
-
-<!-- <div [class]="overlayClasses" (click)="onOverlayClick()"></div> -->
-
-
 <nav [class]="sidebarClasses">
+
+  <button class="menu_open" mat-icon-button (click)="toggleSidebar()">
+    <mat-icon>{{ isOpen ? 'menu_open' : 'menu' }}</mat-icon>
+  </button>
+  
   <div class="sidebar-header">
     <div class="user-info" *ngIf="isOpen">
-      <h4>{{ userInfo.name }}</h4>
+      <h4>{{ userInfo.firstName }} {{userInfo.lastName }}</h4>
       <span>{{ userInfo.roleName }}</span>
     </div>
+  </div>
+
+  <div class="nav-section">
+    <button mat-button color="primary" routerLink="/dashboard">
+      <mat-icon>dashboard</mat-icon>
+      @if (isOpen) {Dashboard} 
+    </button>
+  </div>
+
+  <div class="nav-section">
+    <button mat-button color="primary" routerLink="/users">
+      <mat-icon>group</mat-icon>
+      @if (isOpen) {Users} 
+    </button>
   </div>
 
   <div class="logout-section" *ngIf="isOpen">
