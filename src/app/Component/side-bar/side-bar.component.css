@@ -77,6 +77,9 @@
   margin-left: auto;
 }
 
+.nav-section {
+}
+
 .nav-links {
   list-style: none;
   padding: 0;
@@ -151,7 +154,6 @@
     display: block;
   }
 }
-
 
 .menu_open {
     position: absolute;

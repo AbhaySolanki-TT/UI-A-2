@@ -31,10 +31,10 @@
                 <td>{{ user.roleName }}</td>
                 <td>{{ user.joiningDate | date: 'mediumDate' }}</td>
                 <td class="actions">
-                    <button mat-fab (click)="EditDialog(user)">
+                    <button mat-mini-fab (click)="EditDialog(user)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-fab (click)="DeleteDialog(user.id, user.firstName + ' ' + user.lastName)">
+                    <button mat-mini-fab (click)="DeleteDialog(user.id, user.firstName + ' ' + user.lastName)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>

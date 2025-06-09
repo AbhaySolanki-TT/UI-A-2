@@ -5,4 +5,5 @@ export const AppRoutes = {
   register: 'register',
   users: 'users',
   dashboard: 'dashboard',
+  roles: 'roles',
 };

@@ -5,21 +5,25 @@
         <mat-form-field appearance="fill">
             <mat-label>First Name</mat-label>
             <input matInput formControlName="firstName">
+            <app-validation-error [control]="userForm.get('firstName')"></app-validation-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Last Name</mat-label>
             <input matInput formControlName="lastName">
+            <app-validation-error [control]="userForm.get('lastName')"></app-validation-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput type="email" formControlName="email" [readonly]="!!data">
+            <app-validation-error [control]="userForm.get('email')"></app-validation-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" *ngIf="!data">
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password" [disabled]="!!data">
+            <app-validation-error [control]="userForm.get('password')"></app-validation-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -27,26 +31,24 @@
             <input matInput [matDatepicker]="dobPicker" formControlName="dateOfBirth" [readonly]="!!data">
             <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
             <mat-datepicker #dobPicker></mat-datepicker>
+            <app-validation-error [control]="userForm.get('dateOfBirth')"></app-validation-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Mobile No.</mat-label>
             <input matInput formControlName="mobileNo">
+            <app-validation-error [control]="userForm.get('mobileNo')"></app-validation-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label>Role</mat-label>
-            <input matInput formControlName="roleName">
-        </mat-form-field>
-        
-        <!-- <mat-form-field appearance="fill">
             <mat-label>Role</mat-label>
             <mat-select formControlName="roleId" (selectionChange)="onRoleChange($event)">
                 <mat-option *ngFor="let role of roles" [value]="role.id">
                     {{ role.name }}
                 </mat-option>
             </mat-select>
-        </mat-form-field> -->
+            <app-validation-error [control]="userForm.get('roleId')"></app-validation-error>
+        </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Joining Date</mat-label>

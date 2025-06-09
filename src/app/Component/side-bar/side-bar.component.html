@@ -3,7 +3,7 @@
   <button class="menu_open" mat-icon-button (click)="toggleSidebar()">
     <mat-icon>{{ isOpen ? 'menu_open' : 'menu' }}</mat-icon>
   </button>
-  
+
   <div class="sidebar-header">
     <div class="user-info" *ngIf="isOpen">
       <h4>{{ userInfo.firstName }} {{userInfo.lastName }}</h4>
@@ -11,20 +11,13 @@
     </div>
   </div>
 
-  <div class="nav-section">
-    <button mat-button color="primary" routerLink="/dashboard">
-      <mat-icon>dashboard</mat-icon>
-      @if (isOpen) {Dashboard} 
+  <div class="nav-section" *ngFor="let menu of sideBarMenus">
+    <button mat-button color="primary" [routerLink]="menu.Link">
+      <mat-icon>{{ menu.Icon }}</mat-icon>
+      <span *ngIf="isOpen">{{ menu.Name }}</span>
     </button>
   </div>
-
-  <div class="nav-section">
-    <button mat-button color="primary" routerLink="/users">
-      <mat-icon>group</mat-icon>
-      @if (isOpen) {Users} 
-    </button>
-  </div>
-
+  
   <div class="logout-section" *ngIf="isOpen">
     <button (click)="onLogOut()" class="logout-btn">🚪 Logout</button>
   </div>

@@ -6,8 +6,8 @@ import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { EditUserComponent } from '../edit-user/edit-user.component';
-import { DeleteUserComponent } from '../delete-user/delete-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 @Component({
   selector: 'app-user',

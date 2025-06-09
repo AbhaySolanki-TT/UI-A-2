@@ -6,6 +6,7 @@ import { RegisterComponent } from './Component/register/register.component';
 import { authGuard } from './core/Guards/auth.guard';
 import { UserComponent } from './Component/user/user.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
+import { RolesComponent } from './Component/roles/roles.component';
 
 export const routes: Routes = [
     {path:AppRoutes.login, component:LoginComponent, canActivate: []},
@@ -13,6 +14,7 @@ export const routes: Routes = [
             children: [
             {path: AppRoutes.dashboard, component:DashboardComponent},
             {path: AppRoutes.users, component:UserComponent},
+            {path: AppRoutes.roles, component:RolesComponent},
         ]},
     {path:AppRoutes.register, component:RegisterComponent, canActivate: []},
 ];

@@ -1,0 +1,34 @@
+<!-- <div class="role-container">
+
+    <div class="component-header">
+        <h3 class="title">Role List</h3>
+
+        <button mat-fab (click)="EditDialog(null)">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+
+    <table class="role-table" *ngIf="roles.length > 0;">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let role of roles; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ role.Name }}</td>
+                <td class="actions">
+                    <button mat-mini-fab (click)="EditDialog(role)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab (click)="DeleteDialog(role.id, role.Name)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->

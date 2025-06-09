@@ -4,16 +4,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router, RouterLink } from '@angular/router';
 import { LogoutComponent } from '../logout/logout.component';
 import { AuthService } from '../../core/Services/auth.service';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { UserInfo } from '../../core/Interfaces/UserInfo';
 import { JwtService } from '../../core/Services/jwt.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { side_bar, SideBarMenu } from './side-bar';
 
 @Component({
   selector: 'app-side-bar',
   imports: [
     NgIf,
+    NgFor,
     MatIconModule,
     MatButtonModule,
     RouterLink
@@ -24,13 +26,14 @@ import { MatButtonModule } from '@angular/material/button';
 export class SideBarComponent implements OnInit {
   isOpen = true;
   userInfo: UserInfo = {} as UserInfo;
+  sideBarMenus: any;
 
   constructor(
     private dialog: MatDialog,
     private authService: AuthService,
     private jwtService: JwtService,
     private router: Router,
-  ) { }
+  ) { this.sideBarMenus = side_bar}
 
   ngOnInit() {
     const userName = this.jwtService.getUserName();
