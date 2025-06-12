@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { NgFor, NgIf } from '@angular/common';
 import { Role } from '../../../core/Interfaces/Role';
 import { RoleService } from '../../../core/Services/role.service';
@@ -82,7 +82,6 @@ export class EditUserComponent {
     }
     else {
       this.userForm.markAllAsTouched(); 
-      // console.log("INVALID", this.userForm.errors, this.userForm);
     }
   }
 

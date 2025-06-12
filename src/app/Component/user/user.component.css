@@ -54,7 +54,7 @@
 
 .actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .component-header {

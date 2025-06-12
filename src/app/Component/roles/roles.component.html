@@ -1,4 +1,4 @@
-<!-- <div class="role-container">
+<div class="role-container">
 
     <div class="component-header">
         <h3 class="title">Role List</h3>
@@ -19,16 +19,16 @@
         <tbody>
             <tr *ngFor="let role of roles; let i = index">
                 <td>{{ i+1 }}</td>
-                <td>{{ role.Name }}</td>
+                <td>{{ role.name }}</td>
                 <td class="actions">
                     <button mat-mini-fab (click)="EditDialog(role)">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-mini-fab (click)="DeleteDialog(role.id, role.Name)">
+                    <button mat-mini-fab (click)="DeleteDialog(role)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>
             </tr>
         </tbody>
     </table>
-</div> -->
+</div>

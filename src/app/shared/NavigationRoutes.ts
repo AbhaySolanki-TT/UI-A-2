@@ -6,4 +6,5 @@ export const AppRoutes = {
   users: 'users',
   dashboard: 'dashboard',
   roles: 'roles',
+  timeslots: 'timeslots',
 };

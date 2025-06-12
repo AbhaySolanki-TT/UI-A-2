@@ -1,0 +1,80 @@
+.timeslot-container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.week-group {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+.week-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeslot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.timeslot-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: box-shadow 0.2s;
+  border-left: 5px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeslot-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timeslot-card .status-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.available {
+  color: #256029;
+  background-color: #e6f4ea;
+  border-left-color: #34c759;
+}
+
+.booked {
+  color: #8a2be2;
+  background-color: #f3e8ff;
+  border-left-color: #b784f3;
+}
+
+.unavailable {
+  color: #842029;
+  background-color: #f8d7da;
+  border-left-color: #dc3545;
+}
+
+.timeslot-card .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.timeslot-card .actions button {
+  min-width: 80px;
+}

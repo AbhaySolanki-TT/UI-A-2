@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>{{ data ? 'Edit Role' : 'Add User' }}</h2>
+
+<form [formGroup]="roleForm" class="edit-form">
+    <div class="form-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Role</mat-label>
+                <input matInput formControlName="name">
+                <app-validation-error [control]="roleForm.get('name')"></app-validation-error>
+            </mat-form-field>
+    </div>
+        <div class="button-group">
+            <button mat-button (click)="cancel()">Cancel</button>
+            <button mat-flat-button color="primary" (click)="save()">Save</button>
+        </div>
+</form>

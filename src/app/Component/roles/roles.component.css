@@ -1,0 +1,111 @@
+.role-container,
+.role-table {
+    font-family: 'Inter', sans-serif;
+}
+
+.role-container {
+    max-width: 700px; 
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+    
+.role-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.role-table th {
+    background-color: #f0f2f5;
+    color: #374151;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #d1d5db;
+}
+
+.role-table td {
+    background: #f4f6f8;
+    padding: 12px 16px;
+    border-radius: 10px;
+    color: #2c3e50;
+}
+
+.role-table tr {
+    transition: transform 0.2s ease;
+}
+
+.role-table tr:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.component-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-start; 
+    gap: 0.5rem;
+}
+
+.role-table td,
+.role-table th {
+    white-space: nowrap;
+}
+
+.role-table td:nth-child(3),
+.role-table th:nth-child(3) {
+    width: 150px;
+}
+
+
+
+/* Responsive table styling */
+@media (max-width: 768px) {
+    .role-table,
+    .role-table thead,
+    .role-table tbody,
+    .role-table th,
+    .role-table td,
+    .role-table tr {
+        display: block;
+    }
+
+    .role-table th {
+        display: none;
+    }
+
+    .role-table td {
+        margin-bottom: 10px;
+        padding: 10px;
+        text-align: right;
+        position: relative;
+    }
+
+    .role-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        text-align: left;
+        font-weight: bold;
+        color: #6b7280;
+    }
+}

@@ -20,4 +20,9 @@ export const side_bar: SideBarMenu[] = [
         Icon: 'assignment_ind',
         Link: '/roles'
     },
+    {
+        Name: 'TimeSlot',
+        Icon: 'event',
+        Link: '/timeslots'
+    },
 ];

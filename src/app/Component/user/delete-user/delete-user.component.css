@@ -1,0 +1,42 @@
+.delete-user-dialog {
+    max-width: 500px;
+    padding: 24px;
+    box-sizing: border-box;
+
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dialog-content {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 8px;
+}
+
+.cancel-btn {
+    color: #666;
+    font-size: 1.5rem;
+}
+
+.delete-btn {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: #d32f2f;
+}
+
+.delete-btn:hover {
+    background-color: #b71c1c;
+}
+
+.btn-icon {
+    margin-right: 6px;
+}

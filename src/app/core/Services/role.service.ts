@@ -20,26 +20,26 @@ export class RoleService {
   
     GetByID(id: number): Observable<ApiResponse<any>>{
       return this.api.get<ApiResponse<any>>(
-        API_ENDPOINTS.USER.GET_BY_ID(id))
+        API_ENDPOINTS.ROLE.GET_BY_ID(id))
     }
   
     GetUserCount(): Observable<ApiResponse<any>>{
       return this.api.get<ApiResponse<any>>(
-        API_ENDPOINTS.USER.USERCOUNT)
+        API_ENDPOINTS.ROLE.USERCOUNT)
     }
   
     Create(data: UserInfo): Observable<ApiResponse<any>> {
       return this.api.post<ApiResponse<any>>(
-        API_ENDPOINTS.USER.CREATE, data)
+        API_ENDPOINTS.ROLE.CREATE, data)
     }
     
     Update(data: UserInfo): Observable<ApiResponse<any>> {
       return this.api.post<ApiResponse<any>>(
-        API_ENDPOINTS.USER.UPDATE, data)
+        API_ENDPOINTS.ROLE.UPDATE, data)
     }
   
     Delete(id: number): Observable<ApiResponse<any>> {
       return this.api.delete<ApiResponse<any>>(
-        API_ENDPOINTS.USER.DELETE(id))
+        API_ENDPOINTS.ROLE.DELETE(id))
     }
 }

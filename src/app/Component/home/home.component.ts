@@ -14,8 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  title = "Welcome to the Home Page!";
-  description = "This is a simple home component.";
+  title = "Welcome to the GAME ZONE!";
 
   constructor(private dialog: MatDialog, private authService: AuthService) { }
 

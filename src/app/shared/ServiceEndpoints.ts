@@ -22,5 +22,15 @@ export const API_ENDPOINTS = {
         CREATE: 'Role/Create',
         UPDATE: 'Role/Update',
         DELETE: (id: string | number) => `Role/Delete/${id}`,
-    }
+    },
+    TIMESLOT: {
+        GET_ALL: 'TimeSlot/getAll',
+        GET_AVAILABLE: 'TimeSlot/getAvailable',
+        
+        CREATE: 'TimeSlot/register',
+        STATS: 'TimeSlot/booking-stats',
+        
+        UPDATE_BY_ID: (id: string | number) => `TimeSlot/update/${id}`,
+        DELETE: (id: string | number) => `TimeSlot/delete/${id}`,
+    },
 };
