@@ -1,80 +1,196 @@
 .timeslot-container {
-  padding: 2rem;
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.month-section {
+  margin-bottom: 40px;
+}
+
+.month-header {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
 }
 
-.week-group {
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
-}
-
-.week-header {
-  font-size: 1.25rem;
+.month-header h3 {
+  font-size: 24px;
   font-weight: 600;
   color: #333;
-  margin-bottom: 1rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.event-count {
+  background-color: #6c63ff;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.slot-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.slot-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.slot-card.zone-1 {
+  border-left-color: #00bcd4;
+  background: linear-gradient(135deg, #f0fdff 0%, #ffffff 100%);
+}
+
+.slot-card.zone-2 {
+  border-left-color: #ff9800;
+  background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+}
+
+.slot-card.zone-3 {
+  border-left-color: #4caf50;
+  background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+}
+
+.card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 15px;
 }
 
-.timeslot-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1rem;
+.slot-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
 }
 
-.timeslot-card {
-  background: #f8f9fa;
-  border-radius: 12px;
-  padding: 1rem;
-  transition: box-shadow 0.2s;
-  border-left: 5px solid transparent;
+.options-btn {
+  color: #999;
+  cursor: grab;
+}
+
+.options-btn:active {
+  cursor: grabbing;
+}
+
+.slot-details {
+  margin-bottom: 20px;
+}
+
+.detail-item {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: #666;
+  font-size: 14px;
 }
 
-.timeslot-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.detail-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #888;
 }
 
-.timeslot-card .status-label {
-  font-size: 0.9rem;
-  font-weight: bold;
-  padding: 0.25rem 0.5rem;
-  border-radius: 8px;
-  width: fit-content;
-}
-
-.available {
-  color: #256029;
-  background-color: #e6f4ea;
-  border-left-color: #34c759;
-}
-
-.booked {
-  color: #8a2be2;
-  background-color: #f3e8ff;
-  border-left-color: #b784f3;
-}
-
-.unavailable {
-  color: #842029;
-  background-color: #f8d7da;
-  border-left-color: #dc3545;
-}
-
-.timeslot-card .actions {
+.card-footer {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0;
 }
 
-.timeslot-card .actions button {
-  min-width: 80px;
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+  background-color: #e8f5e8;
+  color: #2e7d32;
+}
+
+.status-badge.inactive {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.status-badge.pending {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.action-btn {
+  color: #6c63ff;
+  font-size: 12px;
+  padding: 4px 8px;
+  min-width: auto;
+}
+
+.action-btn mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.external-link-btn {
+  color: #999;
+  width: 32px;
+  height: 32px;
+}
+
+.external-link-btn mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .slots-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeslot-container {
+    padding: 15px;
+  }
+  
+  .card-footer {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
 }

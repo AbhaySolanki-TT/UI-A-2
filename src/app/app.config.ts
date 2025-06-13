@@ -7,6 +7,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthInterceptor } from './core/Interceptors/auth.interceptor';
 import { baseUrlInterceptor } from './core/Interceptors/base-url.interceptor';
 import { MatNativeDateModule } from '@angular/material/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,5 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withInterceptors([AuthInterceptor, baseUrlInterceptor])),
     importProvidersFrom(MatNativeDateModule),
+    provideAnimations(),
     ]
 };

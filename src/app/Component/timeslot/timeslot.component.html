@@ -1,36 +1,68 @@
 <div class="timeslot-container">
-  <div class="header">
-    <h2>TimeSlot Schedule</h2>
-    <button mat-flat-button color="primary" (click)="openCreateDialog()">+ Create</button>
-  </div>
-
-  <div *ngFor="let group of groupedTimeSlots | keyvalue: sortByWeek">
-    <div class="week-group">
-      <h3>{{ formatWeekRange(group.key) }} <span class="event-count">{{ group.value.length }} Bookings</span></h3>
-
-      <div class="timeslot-cards">
-        <mat-card class="timeslot-card" *ngFor="let slot of group.value">
-          <div class="slot-header">
-            <span class="zone">GameZone: {{ slot.gameZoneId }}</span>
-            <mat-chip [color]="getStatusColor(slot.status)" selected>{{ slot.status }}</mat-chip>
-          </div>
-
-          <div class="slot-body">
-            <p><strong>Date:</strong> {{ slot.bookingDate | date }}</p>
-            <p><strong>Time:</strong> {{ slot.startTime }} - {{ slot.endTime }}</p>
-            <p *ngIf="slot.notes"><strong>Notes:</strong> {{ slot.notes }}</p>
-          </div>
-
-          <div class="slot-actions">
-            <button mat-icon-button color="primary" (click)="editSlot(slot)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="deleteSlot(slot.id)">
-              <mat-icon>delete</mat-icon>
+  <div class="month-section" *ngFor="let monthGroup of getGroupedTimeSlots()">
+    <div class="month-header">
+      <h3>{{ monthGroup.month }}</h3>
+      <span class="event-count">{{ monthGroup.slots.length }} Events</span>
+    </div>
+    
+    <div class="slots-grid">
+      <mat-card 
+        *ngFor="let slot of monthGroup.slots" 
+        class="slot-card"
+        [ngClass]="getCardClass(slot)">
+        
+        <mat-card-content>
+          <div class="card-header">
+            <h4 class="slot-title">Game Zone Booking</h4>
+            <button mat-icon-button class="options-btn">
+              <mat-icon>drag_indicator</mat-icon>
             </button>
           </div>
-        </mat-card>
-      </div>
+          
+          <div class="slot-details">
+            <div class="detail-item">
+              <mat-icon class="detail-icon">schedule</mat-icon>
+              <span>{{ getFormattedDuration(slot) }}</span>
+            </div>
+            
+            <div class="detail-item">
+              <mat-icon class="detail-icon">event</mat-icon>
+              <span>{{ getFormattedDate(slot.bookingDate) }}</span>
+            </div>
+            
+            <div class="detail-item">
+              <mat-icon class="detail-icon">access_time</mat-icon>
+              <span>{{ getFormattedTime(slot.startTime) }} - {{ getFormattedTime(slot.endTime) }}</span>
+            </div>
+            
+            <div class="detail-item">
+              <mat-icon class="detail-icon">sports_esports</mat-icon>
+              <span>Zone {{ slot.gameZoneId }}</span>
+            </div>
+            
+            <div class="detail-item" *ngIf="slot.notes">
+              <mat-icon class="detail-icon">note</mat-icon>
+              <span>{{ slot.notes }}</span>
+            </div>
+          </div>
+          
+          <div class="card-footer">
+            <div class="status-badge" [ngClass]="getStatusClass(slot.status)">
+              {{ getStatusText(slot.status) }}
+            </div>
+            
+            <div class="card-actions">
+              <button mat-button class="action-btn">
+                <mat-icon>link</mat-icon>
+                View Details
+              </button>
+              <button mat-icon-button class="external-link-btn">
+                <mat-icon>open_in_new</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>

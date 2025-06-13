@@ -1,138 +1,127 @@
-import { Component, OnInit } from '@angular/core';
-import moment from 'moment';
-import { MatDialog } from '@angular/material/dialog';
-import { TimeSlot, TimeSlotStatus } from '../../core/Interfaces/TimeSlot';
-import { TimeSlotService } from '../../core/Services/timeslot.service';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { Component } from "@angular/core";
 import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
-import { EditTimeSlotComponent } from './edit-time-slot/edit-time-slot.component';
-import { DeleteTimeSlotComponent } from './delete-time-slot/delete-time-slot.component';
+import { TimeSlotService } from "../../core/Services/timeslot.service";
+import { QueryParams } from "../../core/Interfaces/QueryParams";
+import { TimeSlot } from "../../core/Interfaces/TimeSlot";
+import { CommonModule } from "@angular/common";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 
+interface MonthGroup {
+  month: string;
+  slots: TimeSlot[];
+}
 
 @Component({
   selector: 'app-timeslot-list',
   imports: [
-    NgIf, NgFor, CommonModule, MatCardModule, MatChipsModule, MatIconModule
+    MatCardModule, CommonModule, MatButtonModule, MatIconModule
   ],
   templateUrl: './timeslot.component.html',
   styleUrls: ['./timeslot.component.css']
 })
-export class TimeSlotComponent implements OnInit {
+export class TimeSlotComponent {
+
+  params: QueryParams = {};
   timeSlots: TimeSlot[] = [];
-  groupedTimeSlots: { [weekKey: string]: TimeSlot[] } = {};
 
-  constructor(
-    private timeSlotService: TimeSlotService,
-    private dialog: MatDialog
-  ) { }
+  constructor(private service: TimeSlotService) { }
 
-  ngOnInit(): void {
-    this.loadTimeSlots();
+  ngOnInit() {
+    this.getAll(this.params);
   }
 
-  loadTimeSlots(): void {
-    const params = { page: 1, pageSize: 100 };
-    this.timeSlotService.getAll(params).subscribe(response => {
-      if (response.isSuccess) {
-        this.timeSlots = response.data!;
-        this.groupTimeSlotsByWeek();
-      }
-    });
-  }
-
-  groupTimeSlotsByWeek() {
-    const groups: { [weekKey: string]: TimeSlot[] } = {};
-
-    for (const slot of this.timeSlots) {
-      const date = moment(slot.bookingDate);
-      const weekKey = `${date.year()}-W${date.isoWeek()}`;
-
-      if (!groups[weekKey]) {
-        groups[weekKey] = [];
-      }
-
-      groups[weekKey].push(slot);
-    }
-
-    this.groupedTimeSlots = groups;
-  }
-
-
-  sortByWeek = (a: { key: string }, b: { key: string }) => {
-    return a.key.localeCompare(b.key);
-  };
-
-
-  formatWeekRange(weekKey: string): string {
-    const [year, week] = weekKey.split('-W');
-    const start = moment().year(+year).isoWeek(+week).startOf('isoWeek');
-    const end = start.clone().endOf('isoWeek');
-    return `${start.format('MMM D')} - ${end.format('MMM D, YYYY')}`;
-  }
-
-  getStatusColor(status: TimeSlotStatus): 'primary' | 'accent' | 'warn' {
-    switch (status) {
-      case TimeSlotStatus.Available: return 'primary';
-      case TimeSlotStatus.Booked: return 'accent';
-      case TimeSlotStatus.Unavailable: return 'warn';
-      default: return 'primary';
-    }
-  }
-
-  reserve(slot: TimeSlot): void {
-    if (slot.status !== TimeSlotStatus.Available) return;
-    const payload = { id: slot.id, gameZoneId: slot.gameZoneId };
-
-    this.timeSlotService.register(payload).subscribe(res => {
+  getAll(params: QueryParams) {
+    this.service.getAll(params).subscribe((res) => {
       if (res.isSuccess) {
-        slot.status = TimeSlotStatus.Booked;
+        this.timeSlots = res.data!;
       }
+    })
+  }
+
+  getGroupedTimeSlots(): MonthGroup[] {
+
+    const grouped = this.timeSlots.reduce((groups, slot) => {
+      const date = new Date(slot.bookingDate);
+      const monthYear = date.toLocaleDateString('en-IN', {
+        month: 'long',
+        year: 'numeric'
+      }).toUpperCase();
+
+      if (!groups[monthYear]) {
+        groups[monthYear] = [];
+      }
+
+      groups[monthYear].push(slot);
+
+      return groups;
+    }, {} as { [key: string]: TimeSlot[] });
+
+    return Object.entries(grouped).map(([month, slots]) => ({
+      month,
+      slots
+    }));
+  }
+
+  getCardClass(slot: TimeSlot): string {
+    return `zone-${slot.gameZoneId}`;
+  }
+
+  getFormattedDate(dateString: string) {
+
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString('en-IN', {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
     });
   }
 
-  editSlot(slot: TimeSlot): void {
-    const dialogRef = this.dialog.open(EditTimeSlotComponent, {
-      width: '500px',
-      data: { slot }
-    });
+  getFormattedTime(timeString: string): string {
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loadTimeSlots();
-      }
-    });
+    const [hours, minutes] = timeString.split(':');
+
+    const date = new Date();
+
+    date.setHours(parseInt(hours), parseInt(minutes));
+
+    return date.toLocaleDateString('en-IN', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    })
   }
 
-  deleteSlot(id: number): void {
-    const confirmRef = this.dialog.open(DeleteTimeSlotComponent, {
-      data: {
-        title: 'Delete Timeslot',
-        message: 'Are you sure you want to delete this timeslot?'
-      }
-    });
+  getFormattedDuration(slot: TimeSlot): string {
+    const start = new Date(`2000-01-01T${slot.startTime}`);
+    const end = new Date(`2000-01-01T${slot.endTime}`);
+    const diffMs = end.getTime() - start.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
 
-    confirmRef.afterClosed().subscribe(confirmed => {
-      if (confirmed) {
-        this.timeSlotService.delete(id).subscribe(res => {
-          if (res.isSuccess) {
-            this.loadTimeSlots();
-          }
-        });
-      }
-    });
+    if (diffMins >= 60) {
+      const hours = Math.floor(diffMins / 60);
+      const minutes = diffMins % 60;
+      return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
+    }
+    return `${diffMins} mins`;
   }
 
-  openCreateDialog(): void {
-    const dialogRef = this.dialog.open(EditTimeSlotComponent, {
-      width: '500px'
-    });
+  getStatusText(status: number): string {
+    switch (status) {
+      case 1: return 'Active';
+      case 0: return 'Inactive';
+      case 2: return 'Pending';
+      default: return 'Unknown';
+    }
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.loadTimeSlots();
-      }
-    });
+  getStatusClass(status: number): string {
+    switch (status) {
+      case 1: return 'active';
+      case 0: return 'inactive';
+      case 2: return 'pending';
+      default: return 'unknown';
+    }
   }
 }
