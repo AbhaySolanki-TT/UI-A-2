@@ -1,0 +1,61 @@
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  min-width: 400px;
+  max-width: 100%;
+}
+
+.form-container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+button[mat-flat-button] {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+}
+
+button[mat-button] {
+  font-weight: 500;
+  color: #666;
+}
+
+h2[mat-dialog-title] {
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+}
+
+/* Optional: Dialog responsiveness */
+@media (max-width: 600px) {
+  .edit-form {
+    padding: 16px;
+  }
+
+  .form-container {
+    grid-template-columns: 1fr;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

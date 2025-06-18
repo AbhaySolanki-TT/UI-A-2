@@ -25,8 +25,8 @@ export class TimeSlotService {
     return this.api.post<ApiResponse<any>>(API_ENDPOINTS.TIMESLOT.CREATE, slot);
   }
 
-  update(id: number, updatedSlot: any): Observable<ApiResponse<any>> {
-    return this.api.put<ApiResponse<any>>(API_ENDPOINTS.TIMESLOT.UPDATE_BY_ID(id), updatedSlot);
+  update(updatedSlot: any): Observable<ApiResponse<any>> {
+    return this.api.put<ApiResponse<any>>(API_ENDPOINTS.TIMESLOT.UPDATE_BY_ID(updatedSlot.id), updatedSlot);
   }
 
   delete(id: number): Observable<ApiResponse<any>> {

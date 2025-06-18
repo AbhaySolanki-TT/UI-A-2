@@ -26,11 +26,21 @@ export const API_ENDPOINTS = {
     TIMESLOT: {
         GET_ALL: 'TimeSlot/getAll',
         GET_AVAILABLE: 'TimeSlot/getAvailable',
-        
+
         CREATE: 'TimeSlot/register',
         STATS: 'TimeSlot/booking-stats',
-        
+
         UPDATE_BY_ID: (id: string | number) => `TimeSlot/update/${id}`,
         DELETE: (id: string | number) => `TimeSlot/delete/${id}`,
     },
+
+    GAMEZONE: {
+        GET_ALL: 'GameZone/GetAll',
+        GET_BY_ID: (id: string | number) => `GameZone/Get/${id}`,
+        CREATE: 'GameZone',
+        UPDATE_BY_ID: (id: string | number) => `GameZone/${id}`,
+        DELETE: (id: string | number) => `GameZone/${id}`,
+        COUNT: 'GameZone/gamezonecount',
+    }
+
 };

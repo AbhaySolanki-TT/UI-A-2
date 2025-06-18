@@ -1,1 +1,56 @@
-<p>edit-time-slot works!</p>
+<h2 mat-dialog-title>{{ data ? 'Edit Time Slot' : 'Add Time Slot' }}</h2>
+
+<form [formGroup]="timeSlotForm" class="edit-form">
+    <div class="form-container">
+        <mat-form-field appearance="fill">
+            <mat-label>Game Zone</mat-label>
+            <mat-select formControlName="gameZoneId">
+                <mat-option *ngFor="let zone of gameZones" [value]="zone.id">
+                    {{ zone.name }}
+                </mat-option>
+            </mat-select>
+            <app-validation-error [control]="timeSlotForm.get('gameZoneId')"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Booking Date</mat-label>
+            <input matInput [matDatepicker]="bookingDatePicker" formControlName="bookingDate">
+            <mat-datepicker-toggle matSuffix [for]="bookingDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #bookingDatePicker></mat-datepicker>
+            <app-validation-error [control]="timeSlotForm.get('bookingDate')"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Start Time</mat-label>
+            <input matInput [matTimepicker]="startpicker" [matTimepickerMin] = 'startTime.startMinTime' [matTimepickerMax] = 'startTime.statMaxTime'
+                onchange="" formControlName="startTime">
+            <mat-timepicker-toggle matIconSuffix [for]="startpicker" />
+            <mat-timepicker interval="1h" #startpicker />
+            <app-validation-error [control]="timeSlotForm.get('startTime')"></app-validation-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>End Time</mat-label>
+            <input matInput [matTimepicker]="endpicker" [matTimepickerMin]="timeSlotForm.get('startTime')?.value" [matTimepickerMax] = 'endTime.endMaxTime'
+                formControlName="endTime">
+            <mat-timepicker-toggle matIconSuffix [for]="endpicker" />
+            <mat-timepicker interval="1h" #endpicker />
+            <app-validation-error [control]="timeSlotForm.get('endTime')"></app-validation-error>
+
+            <mat-error *ngIf="timeSlotForm.get('endTime')?.hasError('durationInvalid')">
+                End time must be 1–2 hours after start time.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Notes</mat-label>
+            <textarea matInput formControlName="notes" rows="3"></textarea>
+            <app-validation-error [control]="timeSlotForm.get('notes')"></app-validation-error>
+        </mat-form-field>
+    </div>
+
+    <div class="button-group">
+        <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-flat-button color="primary" (click)="save()">Save</button>
+    </div>
+</form>

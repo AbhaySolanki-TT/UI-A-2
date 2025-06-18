@@ -131,45 +131,19 @@
   letter-spacing: 0.5px;
 }
 
-.status-badge.active {
+.status-badge.Available {
   background-color: #e8f5e8;
   color: #2e7d32;
 }
 
-.status-badge.inactive {
+.status-badge.Maintainence {
   background-color: #ffebee;
   color: #c62828;
 }
 
-.status-badge.pending {
+.status-badge.Engaged {
   background-color: #fff3e0;
   color: #ef6c00;
-}
-
-.card-actions {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.action-btn {
-  color: #6c63ff;
-  font-size: 12px;
-  padding: 4px 8px;
-  min-width: auto;
-}
-
-.action-btn mat-icon {
-  font-size: 16px;
-  width: 16px;
-  height: 16px;
-  margin-right: 4px;
-}
-
-.external-link-btn {
-  color: #999;
-  width: 32px;
-  height: 32px;
 }
 
 .external-link-btn mat-icon {
@@ -177,6 +151,19 @@
   width: 16px;
   height: 16px;
 }
+
+.add-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.add-button-wrapper button {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 
 /* Responsive design */
 @media (max-width: 768px) {

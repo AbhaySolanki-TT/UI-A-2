@@ -8,15 +8,21 @@ import { UserComponent } from './Component/user/user.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { RolesComponent } from './Component/roles/roles.component';
 import { TimeSlotComponent } from './Component/timeslot/timeslot.component';
+import { GameZoneComponent } from './Component/game-zone/game-zone.component';
 
 export const routes: Routes = [
-    {path:AppRoutes.login, component:LoginComponent, canActivate: []},
-        {path:AppRoutes.home, component:HomeComponent, canActivate: [authGuard], 
-            children: [
-            {path: AppRoutes.dashboard, component:DashboardComponent},
-            {path: AppRoutes.users, component:UserComponent},
-            {path: AppRoutes.roles, component:RolesComponent},
-            {path: AppRoutes.timeslots, component:TimeSlotComponent},
-        ]},
-    {path:AppRoutes.register, component:RegisterComponent, canActivate: []},
+
+    { path: AppRoutes.login, component: LoginComponent, canActivate: [] },
+
+    {
+        path: AppRoutes.home, component: HomeComponent, canActivate: [authGuard],
+        children: [
+            { path: AppRoutes.dashboard, component: DashboardComponent },
+            { path: AppRoutes.users, component: UserComponent },
+            { path: AppRoutes.roles, component: RolesComponent },
+            { path: AppRoutes.timeslots, component: TimeSlotComponent },
+            { path: AppRoutes.gamezone, component: GameZoneComponent },
+        ]
+    },
+    { path: AppRoutes.register, component: RegisterComponent, canActivate: [] },
 ];

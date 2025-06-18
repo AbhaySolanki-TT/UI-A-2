@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditTimeSlotComponent } from './edit-time-slot.component';
+import { GameZoneComponent } from './game-zone.component';
 
-describe('EditTimeSlotComponent', () => {
-  let component: EditTimeSlotComponent;
-  let fixture: ComponentFixture<EditTimeSlotComponent>;
+describe('GameZoneComponent', () => {
+  let component: GameZoneComponent;
+  let fixture: ComponentFixture<GameZoneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditTimeSlotComponent]
+      imports: [GameZoneComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditTimeSlotComponent);
+    fixture = TestBed.createComponent(GameZoneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

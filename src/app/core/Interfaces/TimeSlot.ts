@@ -1,7 +1,10 @@
+import { GameZone } from "./GameZone";
+
 export interface TimeSlot {
   id: number;
   gameZoneId: number;
   bookingDate: string;   // ISO format date: "YYYY-MM-DD"
+  gameZone: GameZone;
   startTime: string;     // ISO format time: "HH:mm:ss"
   endTime: string;       // ISO format time: "HH:mm:ss"
   status: TimeSlotStatus;
