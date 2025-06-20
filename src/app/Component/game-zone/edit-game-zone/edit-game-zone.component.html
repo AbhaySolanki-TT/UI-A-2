@@ -1,0 +1,120 @@
+<h2 mat-dialog-title>{{ data ? 'Edit Game Zone' : 'Add Game Zone' }}</h2>
+
+<form [formGroup]="gameZoneForm" class="edit-form">
+    <div class="form-container">
+        <!-- Zone Name -->
+        <mat-form-field appearance="fill">
+            <mat-label>Zone Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter zone name">
+            <mat-hint>e.g., VR Arena, Console Corner, Arcade Zone</mat-hint>
+            <mat-error *ngIf="hasError('name', 'required')">
+                Zone name is required
+            </mat-error>
+            <mat-error *ngIf="hasError('name', 'minlength')">
+                Zone name must be at least 3 characters
+            </mat-error>
+            <mat-error *ngIf="hasError('name', 'maxlength')">
+                Zone name cannot exceed 100 characters
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Description -->
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" rows="3" 
+                      placeholder="Describe the game zone features and activities"></textarea>
+            <mat-hint>Provide details about games, equipment, and special features</mat-hint>
+            <mat-error *ngIf="hasError('description', 'required')">
+                Description is required
+            </mat-error>
+            <mat-error *ngIf="hasError('description', 'minlength')">
+                Description must be at least 10 characters
+            </mat-error>
+            <mat-error *ngIf="hasError('description', 'maxlength')">
+                Description cannot exceed 500 characters
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Player Count Row -->
+        <div class="player-count-row">
+            <mat-form-field appearance="fill" class="player-field">
+                <mat-label>Minimum Players</mat-label>
+                <input matInput type="number" formControlName="minPlayers" 
+                       [min]="playerConstraints.minPlayers.min" 
+                       [max]="playerConstraints.minPlayers.max">
+                <mat-hint>Min: {{ playerConstraints.minPlayers.min }}</mat-hint>
+                <mat-error *ngIf="hasError('minPlayers', 'required')">
+                    Minimum players is required
+                </mat-error>
+                <mat-error *ngIf="hasError('minPlayers', 'min')">
+                    Must be at least {{ playerConstraints.minPlayers.min }}
+                </mat-error>
+                <mat-error *ngIf="hasError('minPlayers', 'max')">
+                    Cannot exceed {{ playerConstraints.minPlayers.max }}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="player-field">
+                <mat-label>Maximum Players</mat-label>
+                <input matInput type="number" formControlName="maxPlayers"
+                       [min]="playerConstraints.maxPlayers.min" 
+                       [max]="playerConstraints.maxPlayers.max">
+                <mat-hint>Max: {{ playerConstraints.maxPlayers.max }}</mat-hint>
+                <mat-error *ngIf="hasError('maxPlayers', 'required')">
+                    Maximum players is required
+                </mat-error>
+                <mat-error *ngIf="hasError('maxPlayers', 'min')">
+                    Must be at least {{ playerConstraints.maxPlayers.min }}
+                </mat-error>
+                <mat-error *ngIf="hasError('maxPlayers', 'max')">
+                    Cannot exceed {{ playerConstraints.maxPlayers.max }}
+                </mat-error>
+                <mat-error *ngIf="gameZoneForm.hasError('playersInvalid')">
+                    Maximum players must be greater than or equal to minimum players
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Status -->
+        <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status">
+                <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+                    <div class="status-option">
+                        <span class="status-indicator" [ngClass]="'status-' + status.label.toLowerCase()"></span>
+                        {{ status.label }}
+                    </div>
+                </mat-option>
+            </mat-select>
+            <mat-hint>Current operational status of the zone</mat-hint>
+            <mat-error *ngIf="hasError('status', 'required')">
+                Status is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Zone Preview Card -->
+        <div class="zone-preview" *ngIf="gameZoneForm.get('name')?.value">
+            <h4>Preview</h4>
+            <div class="preview-card">
+                <div class="preview-header">
+                    <span class="preview-name">{{ gameZoneForm.get('name')?.value || 'Zone Name' }}</span>
+                    <span class="preview-status" [ngClass]="'status-' + getStatusLabel(gameZoneForm.get('status')?.value).toLowerCase()">
+                        {{ getStatusLabel(gameZoneForm.get('status')?.value) }}
+                    </span>
+                </div>
+                <p class="preview-description">{{ gameZoneForm.get('description')?.value || 'Zone description...' }}</p>
+                <div class="preview-players">
+                    <mat-icon>group</mat-icon>
+                    <span>{{ gameZoneForm.get('minPlayers')?.value || 1 }} - {{ gameZoneForm.get('maxPlayers')?.value || 2 }} Players</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button mat-button (click)="cancel()">Cancel</button>
+        <button mat-flat-button color="primary" (click)="save()" [disabled]="!gameZoneForm.valid">
+            {{ data ? 'Update Zone' : 'Create Zone' }}
+        </button>
+    </div>
+</form>

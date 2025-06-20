@@ -21,8 +21,13 @@ export const side_bar: SideBarMenu[] = [
         Link: '/roles'
     },
     {
-        Name: 'TimeSlot',
+        Name: 'Time Slot',
         Icon: 'event',
         Link: '/timeslots'
+    },
+    {
+        Name: 'Game Zone',
+        Icon: 'videogame_asset',
+        Link: '/gamezone'
     },
 ];

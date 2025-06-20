@@ -34,6 +34,7 @@ export class GameZoneService {
   }
 
   count(): Observable<ApiResponse<number>> {
-    return this.api.get<ApiResponse<number>>(API_ENDPOINTS.GAMEZONE.COUNT);
+    return this.api.post<ApiResponse<number>>(API_ENDPOINTS.GAMEZONE.COUNT, {});
   }
 }
+ 

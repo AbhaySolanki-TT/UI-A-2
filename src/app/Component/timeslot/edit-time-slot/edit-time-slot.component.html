@@ -22,7 +22,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Start Time</mat-label>
-            <input matInput [matTimepicker]="startpicker" [matTimepickerMin] = 'startTime.startMinTime' [matTimepickerMax] = 'startTime.statMaxTime'
+            <input matInput [matTimepicker]="startpicker" [matTimepickerMin] = 'startTime.startMinTime' [matTimepickerMax] = 'startTime.startMaxTime'
                 onchange="" formControlName="startTime">
             <mat-timepicker-toggle matIconSuffix [for]="startpicker" />
             <mat-timepicker interval="1h" #startpicker />

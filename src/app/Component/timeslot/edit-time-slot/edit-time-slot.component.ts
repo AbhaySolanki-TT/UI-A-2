@@ -12,15 +12,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { NgFor, NgIf } from '@angular/common';
+import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { ValidationErrorComponent } from "../../validation-error/validation-error.component";
 import { MatTimepickerModule } from '@angular/material/timepicker';
-import { endTimeValidator } from '../../../core/Validators/endTimeValidator';
 
 @Component({
   selector: 'app-edit-time-slot',
   imports: [
-    NgFor, NgIf,
+    NgFor, NgIf, DatePipe,
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
@@ -60,24 +59,20 @@ export class EditTimeSlotComponent {
     private dialogRef: MatDialogRef<EditTimeSlotComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TimeSlot | null
   ) {
-    // console.log("id", data?.id);
     this.timeSlotForm = this.fb.group({
       id: [data?.id || null],
       gameZoneId: [data?.gameZoneId || null, [Validators.required]],
-      bookingDate: [this.toDateOnly(data?.bookingDate || new Date()), [Validators.required]],
-      startTime: [this.toTime(data?.startTime || ''), [Validators.required, endTimeValidator]],
-      endTime: [this.toTime(data?.endTime || ''), [Validators.required]],
+      bookingDate: [data?.bookingDate, [Validators.required]],
+      startTime: [new Date(`${data?.bookingDate}T${data?.startTime}`), [Validators.required]],
+      endTime: [new Date(`${data?.bookingDate}T${data?.endTime}`), [Validators.required]],
       notes: [data?.notes || '', [Validators.maxLength(500)]],
-    }, {
-      validators: [endTimeValidator]
     });
   }
 
   ngOnInit() {
-    // console.log(this.timeSlotForm.value.id);
     this.loadGameZones();
 
-    this.timeSlotForm
+    console.log('Booking Date', this.data?.bookingDate)
   }
 
   save() {
@@ -97,28 +92,27 @@ export class EditTimeSlotComponent {
     }
   }
 
-  extractTime(value: any): string {
+  private extractTime(value: any): string {
     const date = new Date(value);
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
-    const seconds = '00';
+    const seconds = date.getSeconds().toString().padStart(2, '0');
     return `${hours}:${minutes}:${seconds}`;
-  }
-
-  toTime(time: string): Date {
-    const [h, m, s] = time.split(':').map(Number);
-    const date = new Date();
-    date.setHours(h, m, s || 0, 0);
-    return date;
-  }
-
-  cancel() {
-    this.dialogRef.close(false);
   }
 
   private toDateOnly(date: string | Date): string {
     const d = new Date(date);
-    return d.toISOString().split('T')[0];
+
+    const year = d.getFullYear();
+    const month = (d.getMonth() + 1).toString().padStart(2, '0'); // Month is 0-indexed
+    const day = d.getDate().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+  }
+
+
+  cancel() {
+    this.dialogRef.close(false);
   }
 
   private loadGameZones() {

@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { TimeSlotService } from "../../core/Services/timeslot.service";
 import { QueryParams } from "../../core/Interfaces/QueryParams";
 import { TimeSlot } from "../../core/Interfaces/TimeSlot";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { GameZoneStatus } from "../../core/Interfaces/GameZone";
@@ -20,7 +20,9 @@ interface MonthGroup {
 @Component({
   selector: 'app-timeslot-list',
   imports: [
-    MatCardModule, CommonModule, MatButtonModule, MatIconModule, MatMenuModule,
+    MatCardModule, CommonModule,
+     MatButtonModule, MatIconModule, 
+     MatMenuModule,
   ],
   templateUrl: './timeslot.component.html',
   styleUrls: ['./timeslot.component.css']
@@ -150,7 +152,7 @@ export class TimeSlotComponent {
 
     date.setHours(parseInt(hours), parseInt(minutes));
 
-    return date.toLocaleDateString('en-IN', {
+    return date.toLocaleTimeString('en-IN', {
       hour: 'numeric',
       minute: '2-digit',
       hour12: true

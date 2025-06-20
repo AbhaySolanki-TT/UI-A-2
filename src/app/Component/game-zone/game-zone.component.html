@@ -1,1 +1,77 @@
-<p>game-zone works!</p>
+<div class="gamezone-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <div class="title-section">
+      <h2>Game Zones Management</h2>
+      <div class="zone-count">
+        <span class="count-badge">{{ totalZones }} Total Zones</span>
+      </div>
+    </div>
+    
+    <div class="add-button-wrapper">
+      <button mat-raised-button color="primary" (click)="editZone(null)">
+        <mat-icon>add</mat-icon>
+        Add New Zone
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading game zones...</p>
+  </div>
+
+  <!-- Game Zones Grid -->
+  <div *ngIf="!loading" class="zones-section">
+    <div class="zones-grid">
+      <div *ngFor="let zone of filteredZones" 
+           class="zone-card" 
+           [ngClass]="getZoneTypeClass(zone.status)">
+        
+        <!-- Card Header -->
+        <div class="card-header">
+          <h3 class="zone-title">{{ zone.name }}</h3>
+          <button mat-icon-button [matMenuTriggerFor]="zoneMenu" class="options-btn">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          
+          <mat-menu #zoneMenu="matMenu">
+            <button mat-menu-item (click)="editZone(zone)">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item (click)="deleteZone(zone)" class="delete-option">
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </div>
+
+        <!-- Zone Details -->
+        <div class="zone-details">
+          <div class="detail-item">
+            <mat-icon class="detail-icon">description</mat-icon>
+            <span>{{ zone.description }}</span>
+          </div>
+          
+          <div class="detail-item">
+            <mat-icon class="detail-icon">group</mat-icon>
+            <span>Players: {{ zone.minPlayers }} - {{ zone.maxPlayers }}</span>
+          </div>
+          
+          <div class="detail-item">
+            <mat-icon class="detail-icon">info</mat-icon>
+            <span>Status: {{ getStatusLabel(zone.status) }}</span>
+          </div>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer">
+          <span class="status-badge" [ngClass]="getStatusClass(zone.status)">
+            {{ getStatusLabel(zone.status) }}
+          </span>
+        </div>
+      </div>
+    </div>
+</div>
