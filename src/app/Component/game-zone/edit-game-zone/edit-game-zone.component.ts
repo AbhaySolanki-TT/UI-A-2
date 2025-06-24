@@ -2,14 +2,22 @@ import { Component, Inject } from '@angular/core';
 import { GameZone, GameZoneStatus } from '../../../core/Interfaces/GameZone';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { NgClass, NgFor } from '@angular/common';
+import { MatError, MatFormFieldModule, MatHint } from '@angular/material/form-field';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { MatOptionModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-edit-game-zone',
-  imports: [ReactiveFormsModule, MatFormFieldModule, NgFor, MatOptionModule, NgClass, MatIconModule],
+  imports: [
+    ReactiveFormsModule, MatFormFieldModule, 
+    NgFor, NgIf, MatInputModule, MatError, 
+    MatOptionModule, NgClass, MatHint, 
+    MatIconModule, MatInputModule, 
+    MatSelectModule, MatOptionModule, 
+  ],
   templateUrl: './edit-game-zone.component.html',
   styleUrl: './edit-game-zone.component.css'
 })
@@ -42,6 +50,7 @@ export class EditGameZoneComponent {
     @Inject(MAT_DIALOG_DATA) public data: GameZone | null
   ) {
     this.gameZoneForm = this.fb.group({
+      
       id: [data?.id || null],
       name: [data?.name || '', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       description: [data?.description || '', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],

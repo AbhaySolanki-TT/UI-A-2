@@ -1,1 +1,13 @@
-<p>delete-game-zone works!</p>
+<div class="dialog-container">
+  <h2 class="dialog-title">Cancel Time Slot</h2>
+
+  <div class="dialog-content">
+    Are you sure you want to cancel the time slot starting at
+    <strong>{{ ZoneName }}</strong>?
+  </div>
+
+  <div class="dialog-actions">
+    <button mat-button class="cancel-btn" (click)="cancel()">No</button>
+    <button mat-raised-button class="confirm-btn" (click)="confirmDelete()">Yes, Cancel</button>
+  </div>
+</div>

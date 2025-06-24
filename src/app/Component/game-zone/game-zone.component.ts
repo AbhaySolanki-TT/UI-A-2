@@ -39,7 +39,7 @@ import { DeleteGameZoneComponent } from './delete-game-zone/delete-game-zone.com
 })
 export class GameZoneComponent {
   gameZones: GameZone[] = [];
-  filteredZones: GameZone[] = [];
+  // filteredZones: GameZone[] = [];
   loading = false;
   totalZones = 0;
   selectedStatus: GameZoneStatus | '' = '';
@@ -60,11 +60,9 @@ export class GameZoneComponent {
     private gameZoneService: GameZoneService,
     private dialog: MatDialog,
     private service: GameZoneService,
-    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    console.log("HI")
     this.GetAll({});
     this.loadZoneCount();
   }
@@ -76,6 +74,7 @@ export class GameZoneComponent {
       }
     })
   }
+
 
   editZone(zone: GameZone | null) {
     const dialogRef = this.dialog.open(EditGameZoneComponent, {
@@ -113,7 +112,7 @@ export class GameZoneComponent {
     const dialogRef = this.dialog.open(DeleteGameZoneComponent, {
       width: '400px',
       maxHeight: '90vh',
-      data: zone
+      data: zone.name
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -130,8 +129,10 @@ export class GameZoneComponent {
   GetAll(params: QueryParams | {}) {
     this.service.getAll(params).subscribe((res) => {
       if (res.isSuccess) {
-        console.log(res.data);
         this.gameZones = res.data!;
+        // this.filteredZones = [...this.gameZones];
+
+        // console.log("Zones 0",this.gameZones[0]);
       }
     })
   }
@@ -152,19 +153,5 @@ export class GameZoneComponent {
 
   getStatusLabel(status: GameZoneStatus): string {
     return GameZoneStatus[status] || 'Unknown';
-  }
-
-  private showSuccess(message: string) {
-    this.snackBar.open(message, 'Close', {
-      duration: 3000,
-      panelClass: ['success-snackbar']
-    });
-  }
-
-  private showError(message: string) {
-    this.snackBar.open(message, 'Close', {
-      duration: 5000,
-      panelClass: ['error-snackbar']
-    });
   }
 }

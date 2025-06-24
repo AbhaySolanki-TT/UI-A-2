@@ -12,8 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/materia
 export class DeleteTimeSlotComponent {
 
   formattedTime: string;
-
-
+  
   constructor(
     private dialogRef: MatDialogRef<DeleteTimeSlotComponent>,
     @Inject(MAT_DIALOG_DATA) public startTime: string

@@ -91,24 +91,6 @@
                 Status is required
             </mat-error>
         </mat-form-field>
-
-        <!-- Zone Preview Card -->
-        <div class="zone-preview" *ngIf="gameZoneForm.get('name')?.value">
-            <h4>Preview</h4>
-            <div class="preview-card">
-                <div class="preview-header">
-                    <span class="preview-name">{{ gameZoneForm.get('name')?.value || 'Zone Name' }}</span>
-                    <span class="preview-status" [ngClass]="'status-' + getStatusLabel(gameZoneForm.get('status')?.value).toLowerCase()">
-                        {{ getStatusLabel(gameZoneForm.get('status')?.value) }}
-                    </span>
-                </div>
-                <p class="preview-description">{{ gameZoneForm.get('description')?.value || 'Zone description...' }}</p>
-                <div class="preview-players">
-                    <mat-icon>group</mat-icon>
-                    <span>{{ gameZoneForm.get('minPlayers')?.value || 1 }} - {{ gameZoneForm.get('maxPlayers')?.value || 2 }} Players</span>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="button-group">

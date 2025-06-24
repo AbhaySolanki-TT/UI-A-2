@@ -25,7 +25,7 @@
   <!-- Game Zones Grid -->
   <div *ngIf="!loading" class="zones-section">
     <div class="zones-grid">
-      <div *ngFor="let zone of filteredZones" 
+      <div *ngFor="let zone of gameZones" 
            class="zone-card" 
            [ngClass]="getZoneTypeClass(zone.status)">
         
