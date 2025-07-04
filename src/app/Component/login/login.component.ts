@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
   selector: 'app-login',
   imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'] // Optional if using styling
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
 

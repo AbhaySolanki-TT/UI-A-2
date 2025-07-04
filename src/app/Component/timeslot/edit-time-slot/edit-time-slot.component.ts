@@ -37,6 +37,7 @@ import { MatTimepickerModule } from '@angular/material/timepicker';
   styleUrl: './edit-time-slot.component.css'
 })
 export class EditTimeSlotComponent {
+  
   timeSlotForm: FormGroup;
   gameZones: GameZone[] = [];
 

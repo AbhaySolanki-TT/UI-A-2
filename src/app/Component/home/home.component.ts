@@ -9,13 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-home',
-  imports: [SideBarComponent, RouterOutlet,MatIconModule,MatButtonModule],
+  imports: [SideBarComponent, RouterOutlet, MatIconModule, MatButtonModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
   title = "Welcome to the GAME ZONE!";
-
+  
   constructor(private dialog: MatDialog, private authService: AuthService) { }
 
   logout() {

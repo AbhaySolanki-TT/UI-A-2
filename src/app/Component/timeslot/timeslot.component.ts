@@ -11,6 +11,8 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatDialog } from "@angular/material/dialog";
 import { EditTimeSlotComponent } from "./edit-time-slot/edit-time-slot.component";
 import { DeleteTimeSlotComponent } from "./delete-time-slot/delete-time-slot.component";
+import { RouterLink } from "@angular/router";
+import { AppRoutes } from "../../shared/NavigationRoutes";
 
 interface MonthGroup {
   month: string;
@@ -21,8 +23,8 @@ interface MonthGroup {
   selector: 'app-timeslot-list',
   imports: [
     MatCardModule, CommonModule,
-     MatButtonModule, MatIconModule, 
-     MatMenuModule,
+    MatButtonModule, MatIconModule,
+    MatMenuModule, RouterLink,
   ],
   templateUrl: './timeslot.component.html',
   styleUrls: ['./timeslot.component.css']
@@ -31,6 +33,7 @@ export class TimeSlotComponent {
 
   params: QueryParams = {};
   timeSlots: TimeSlot[] = [];
+  AppRoutes: any = AppRoutes;
 
   constructor(private service: TimeSlotService, private dialog: MatDialog) { }
 
@@ -47,7 +50,7 @@ export class TimeSlotComponent {
   }
 
   getGroupedTimeSlots(): MonthGroup[] {
-    // Step 1: Sort all time slots by bookingDate (latest first)
+    // Step 1: Sort all time slots by bsookingDate (latest first)
     const sortedSlots = [...this.timeSlots].sort((a, b) => {
       return new Date(b.bookingDate).getTime() - new Date(a.bookingDate).getTime();
     });
@@ -127,6 +130,10 @@ export class TimeSlotComponent {
         })
       }
     })
+  }
+
+  viewPhotos(id: number) {
+
   }
 
   getCardClass(slot: TimeSlot): string {

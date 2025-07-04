@@ -9,6 +9,7 @@ import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { RolesComponent } from './Component/roles/roles.component';
 import { TimeSlotComponent } from './Component/timeslot/timeslot.component';
 import { GameZoneComponent } from './Component/game-zone/game-zone.component';
+import { GameZoneProfileComponent } from './Component/game-zone-profile/game-zone-profile.component';
 
 export const routes: Routes = [
 
@@ -20,8 +21,9 @@ export const routes: Routes = [
             { path: AppRoutes.dashboard, component: DashboardComponent },
             { path: AppRoutes.users, component: UserComponent },
             { path: AppRoutes.roles, component: RolesComponent },
-            { path: AppRoutes.timeslots, component: TimeSlotComponent },
+            { path: AppRoutes.timeslots, component: TimeSlotComponent},
             { path: AppRoutes.gamezone, component: GameZoneComponent },
+            { path: 'gamezone/:id', component: GameZoneProfileComponent },
         ]
     },
     { path: AppRoutes.register, component: RegisterComponent, canActivate: [] },

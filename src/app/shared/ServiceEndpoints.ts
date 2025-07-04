@@ -41,6 +41,8 @@ export const API_ENDPOINTS = {
         UPDATE_BY_ID: (id: string | number) => `GameZone/${id}`,
         DELETE: (id: string | number) => `GameZone/${id}`,
         COUNT: 'GameZone/gamezonecount',
+        GetPhotos: (id: string | number) => `${id}/photos`,
+        UploadPhoto: (id: string | number) => `upload-photo/${id}`,
     }
 
 };

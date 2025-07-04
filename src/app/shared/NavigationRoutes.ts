@@ -8,4 +8,5 @@ export const AppRoutes = {
   roles: 'roles',
   gamezone: 'gamezone',
   timeslots: 'timeslots',
+  gamezoneProfile: (id: string | number) => `gamezone/${id}`,
 };

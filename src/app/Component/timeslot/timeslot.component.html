@@ -26,6 +26,9 @@
               <button mat-icon-button (click)="onCancel(slot.id, slot.startTime)">
                 <mat-icon>cancel</mat-icon>
               </button>
+              <button mat-icon-button [routerLink]="['/gamezone', slot.gameZoneId]">
+                <mat-icon>image</mat-icon>
+              </button>
             </div>
           </div>
 

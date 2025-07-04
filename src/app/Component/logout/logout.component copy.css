@@ -1,0 +1,88 @@
+/* Dialog container */
+.logout-dialog {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100wh;
+  max-width: 400px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Header */
+.dialog-header {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.logout-icon {
+  font-size: 28px;
+  margin-right: 12px;
+  color: #00f0ff;
+}
+
+.dialog-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c2c2c;
+  margin: 0;
+}
+
+/* Content */
+.dialog-content {
+  margin-bottom: 24px;
+}
+
+.logout-message {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.logout-submessage {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Actions */
+.dialog-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Buttons */
+button[mat-button] {
+  padding: 6px 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  color: #555;
+}
+
+.cancel-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.logout-btn {
+  background-color: #ff4c4c;
+  color: white;
+}
+
+.logout-btn:hover {
+  background-color: #ff1f1f;
+}
+
+.btn-icon {
+  margin-right: 6px;
+}

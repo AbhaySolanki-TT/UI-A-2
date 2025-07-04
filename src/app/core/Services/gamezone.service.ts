@@ -11,7 +11,7 @@ import { QueryParams } from '../Interfaces/QueryParams';
 })
 export class GameZoneService {
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService) { }
 
   getAll(params: QueryParams): Observable<ApiResponse<GameZone[]>> {
     return this.api.post<ApiResponse<GameZone[]>>(API_ENDPOINTS.GAMEZONE.GET_ALL, params);
@@ -36,5 +36,12 @@ export class GameZoneService {
   count(): Observable<ApiResponse<number>> {
     return this.api.get<ApiResponse<number>>(API_ENDPOINTS.GAMEZONE.COUNT);
   }
+
+  getPhotos(id: number) {
+    return this.api.get<ApiResponse<string[]>>(API_ENDPOINTS.GAMEZONE.GetPhotos(id));
+
+  }
+  upload(id: number, file: File) {
+    return this.api.post<ApiResponse<number>>(API_ENDPOINTS.GAMEZONE.UploadPhoto(id), file);
+  }
 }
- 

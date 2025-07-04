@@ -1,0 +1,39 @@
+<div class="gamezone-container">
+  <div class="header-section">
+    <div class="title-section">
+      <h2>Game Zone Profile</h2>
+      <span class="count-badge">ID: {{ gameZone?.id }}</span>
+    </div>
+  </div>
+
+  <div class="zones-section">
+    <div class="zones-grid">
+      <div class="zone-card zone-{{ gameZone?.status }}">
+        <div class="card-header">
+          <h3 class="zone-title">{{ gameZone?.name }}</h3>
+          <button class="options-btn" mat-icon-button>
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+
+        <div class="zone-details">
+          <div class="detail-item">
+            <mat-icon class="detail-icon">description</mat-icon>
+            <span>{{ gameZone?.description }}</span>
+          </div>
+
+          <div class="detail-item">
+            <mat-icon class="detail-icon">group</mat-icon>
+            <span>Players: {{ gameZone?.minPlayers }} - {{ gameZone?.maxPlayers }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="status-badge {{ gameZone?.status }}">
+            {{ gameZone?.status }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
